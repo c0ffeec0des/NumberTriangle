@@ -151,7 +151,7 @@ public class NumberTriangle {
             return null;
         }
 
-        for (int i = 0; i < rows.size() - 1; i ++) {
+        for (int i = 0; i < rows.size(); i ++) {
             List<NumberTriangle> currentRow = rows.get(i);
             List<NumberTriangle> nextRow = rows.get(i + 1);
             for (int j = 0; j < nextRow.size() - 1; j++) {
