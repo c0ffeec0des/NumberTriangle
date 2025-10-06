@@ -156,11 +156,8 @@ public class NumberTriangle {
             List<NumberTriangle> nextRow = rows.get(i + 1);
             for (int j = 0; j < nextRow.size(); j++) {
                 NumberTriangle currentNode = currentRow.get(j);
-                if (j < nextRow.size()) {
-                    currentNode.setLeft(nextRow.get(j));
-                }
-                if (j + 1 < nextRow.size()) {
-                    currentNode.setRight(nextRow.get(j + 1));
+                currentNode.setLeft(nextRow.get(j));
+                currentNode.setRight(nextRow.get(j + 1));
             }
 
         }
