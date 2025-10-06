@@ -151,10 +151,10 @@ public class NumberTriangle {
             return null;
         }
 
-        for (int i = 0; i < rows.size(); i ++) {
+        for (int i = 0; i < rows.size() - 1; i ++) {
             List<NumberTriangle> currentRow = rows.get(i);
             List<NumberTriangle> nextRow = rows.get(i + 1);
-            for (int j = 0; j < nextRow.size() - 1; j++) {
+            for (int j = 0; j < nextRow.size(); j++) {
                 NumberTriangle currentNode = currentRow.get(j);
                 currentNode.setLeft(nextRow.get(j));
                 currentNode.setRight(nextRow.get(j + 1));
