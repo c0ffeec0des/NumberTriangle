@@ -96,12 +96,7 @@ public class NumberTriangle {
                 current = current.left;
             } else if (direction == 'r') {
                 current = current.right;
-            } else {
-                throw new IllegalArgumentException("Invalid path character " + direction + ". Only 'L' and 'R' are allowed.");
-            }
 
-            if (current == null) {
-                throw new IllegalArgumentException("Path leads to a null node. Path may be longer than triangle height.");
             }
 
         }
@@ -131,15 +126,14 @@ public class NumberTriangle {
         NumberTriangle top = null;
 
         String line = br.readLine();
-        while (line != null) {
+        while (line != null && !line.trim().isEmpty()) {
 
-            String [] triangleElements = line.trim().split("\\s+");
-            List<NumberTriangle> currentRow = new ArrayList<>();
-            for (String number : triangleElements) {
+            String [] parts = line.trim().split("\\s+");
+            java.util.List<NumberTriangle> currentRow = new java.util.ArrayList<>();
+            for (String number : parts) {
                 int value = Integer.parseInt(number);
                 currentRow.add(new NumberTriangle(value));
             }
-
             rows.add(currentRow);
 
             //read the next line
@@ -147,21 +141,19 @@ public class NumberTriangle {
         }
         br.close();
 
-        if (rows.isEmpty()) {
-            return null;
-        }
-
-        for (int i = 0; i < rows.size(); i ++) {
-            List<NumberTriangle> currentRow = rows.get(i);
-            List<NumberTriangle> nextRow = rows.get(i + 1);
-            for (int j = 0; j < nextRow.size(); j++) {
-                NumberTriangle currentNode = currentRow.get(j);
-                currentNode.setLeft(nextRow.get(j));
-                currentNode.setRight(nextRow.get(j + 1));
+        for (int i = 0; i < rows.size() - 1; i++) {
+            java.util.List<NumberTriangle> setCurrentRow = rows.get(i);
+            java.util.List<NumberTriangle> setNextRow = rows.get(i + 1);
+            for (int j = 0; j < setCurrentRow.size(); j++) {
+                setCurrentRow.get(j).setLeft(setNextRow.get(j));
+                setCurrentRow.get(j).setRight(setNextRow.get(j + 1));
             }
-
         }
-        return rows.get(0).get(0);
+        if (!rows.isEmpty()) {
+            top = rows.get(0).get(0);
+        }
+        return top;
+
     }
 
 
